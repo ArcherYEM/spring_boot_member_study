@@ -14,11 +14,6 @@ public class MemberController {
     // 생성자 주입
     private final MemberService memberService;
 
-    // 롬복 에러로 인하여 하기 클래스 임의 추가
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
-
     // 회원가입 페이지 출력 요청
     @GetMapping("/member/save")
     public String saveForm(){
@@ -29,7 +24,7 @@ public class MemberController {
     public String save(@ModelAttribute MemberDto memberDto){
         System.out.println("MemberController.save");
         System.out.println("memberDto = " + memberDto);
-
+        memberService.save(memberDto);
         return "index";
     }
 }
